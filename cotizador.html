@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizador Interactivo - Soluciones E-Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .step { display: none; }
+        .step.active { display: block; }
+        .plan-card { transition: all 0.2s ease-in-out; }
+        .plan-card.selected {
+            border-color: #2563eb; /* blue-600 */
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="images/logo.png" alt="Logo de la Empresa" class="h-10">
+                <span class="text-xl font-bold text-gray-800">EducaTech Pro</span>
+            </a>
+            <a href="index.html#contacto" class="text-gray-600 hover:text-blue-600 font-medium">Volver a la Página Principal</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+            
+            <!-- Step 1: Select Plan -->
+            <div id="step-1" class="step active">
+                <h2 class="text-2xl font-bold text-center mb-2">Paso 1: Elige tu Plan</h2>
+                <p class="text-center text-gray-600 mb-8">Selecciona el paquete que mejor se adapte a tus necesidades.</p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="plan-card cursor-pointer bg-white p-6 rounded-xl border-2 text-center" onclick="selectPlan('Adaptación de Contenido')">
+                        <h3 class="text-lg font-bold">Adaptación</h3>
+                        <p class="text-sm text-gray-500">Ya tengo mi contenido.</p>
+                    </div>
+                    <div class="plan-card cursor-pointer bg-white p-6 rounded-xl border-2 text-center" onclick="selectPlan('Desarrollo Completo')">
+                        <h3 class="text-lg font-bold">Completo</h3>
+                        <p class="text-sm text-gray-500">Necesito todo desde cero.</p>
+                    </div>
+                    <div class="plan-card cursor-pointer bg-white p-6 rounded-xl border-2 text-center" onclick="selectPlan('Plataforma Personalizada')">
+                        <h3 class="text-lg font-bold">Personalizado</h3>
+                        <p class="text-sm text-gray-500">Quiero funciones avanzadas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Gather Information -->
+            <div id="step-2" class="step">
+                <h2 class="text-2xl font-bold text-center mb-2">Paso 2: Detalles del Proyecto</h2>
+                <p class="text-center text-gray-600 mb-8">Cuéntanos más sobre lo que necesitas.</p>
+                <div id="questions-container" class="space-y-4">
+                    <!-- Questions will be inserted here by JS -->
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="goToStep(3)" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700">Continuar al Resumen →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Summary & Contact -->
+            <div id="step-3" class="step">
+                <h2 class="text-2xl font-bold text-center mb-2">Paso 3: Resumen y Contacto</h2>
+                <p class="text-center text-gray-600 mb-8">Revisa la información de tu proyecto y envíanosla para recibir una cotización formal.</p>
+                <div id="summary-container" class="bg-gray-50 p-6 rounded-lg border space-y-2">
+                    <!-- Summary will be inserted here by JS -->
+                </div>
+                <form id="contact-form" class="mt-6 space-y-4">
+                     <div>
+                        <label for="contact-name" class="block text-sm font-medium text-gray-700">Tu Nombre</label>
+                        <input type="text" id="contact-name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div>
+                        <label for="contact-email" class="block text-sm font-medium text-gray-700">Tu Correo</label>
+                        <input type="email" id="contact-email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700">Enviar Solicitud</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+    
+    <script>
+        let currentStep = 1;
+        const projectDetails = {};
+
+        const questions = {
+            'Adaptación de Contenido': [
+                { id: 'modules', label: '¿Cuántos módulos tiene tu curso?', type: 'number' },
+                { id: 'contentReady', label: '¿El contenido (textos, imágenes) ya está creado?', type: 'select', options: ['Sí', 'No'] },
+                { id: 'assessments', label: '¿Cuántas evaluaciones necesitas?', type: 'number' }
+            ],
+            'Desarrollo Completo': [
+                { id: 'topic', label: '¿Cuál es el tema principal del curso?', type: 'text' },
+                { id: 'audience', label: '¿A qué público está dirigido?', type: 'text' },
+                { id: 'modules', label: '¿Cuántos módulos necesitas (aproximadamente)?', type: 'number' },
+                { id: 'dashboard', label: '¿Necesitas un dashboard para profesor?', type: 'select', options: ['Sí', 'No'] }
+            ],
+            'Plataforma Personalizada': [
+                { id: 'topic', label: '¿Cuál es el tema principal del curso?', type: 'text' },
+                { id: 'audience', label: '¿A qué público está dirigido?', type: 'text' },
+                { id: 'modules', label: '¿Cuántos módulos necesitas (aproximadamente)?', type: 'number' },
+                { id: 'dashboard', label: '¿Necesitas un dashboard para profesor?', type: 'select', options: ['Sí', 'No'] },
+                { id: 'branding', label: '¿Necesitas un diseño con tu propia marca (logo, colores)?', type: 'select', options: ['Sí', 'No'] },
+                { id: 'specialFeatures', label: '¿Requieres alguna funcionalidad especial? (Opcional)', type: 'textarea' }
+            ]
+        };
+
+        function selectPlan(plan) {
+            projectDetails.plan = plan;
+            const cards = document.querySelectorAll('.plan-card');
+            cards.forEach(card => {
+                card.classList.remove('selected');
+                if (card.textContent.includes(plan.split(' ')[0])) {
+                    card.classList.add('selected');
+                }
+            });
+            generateQuestions(plan);
+            setTimeout(() => goToStep(2), 300);
+        }
+
+        function generateQuestions(plan) {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+            const planQuestions = questions[plan];
+            
+            planQuestions.forEach(q => {
+                let inputHTML = '';
+                if (q.type === 'text' || q.type === 'number') {
+                    inputHTML = `<input type="${q.type}" id="${q.id}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">`;
+                } else if (q.type === 'select') {
+                    const optionsHTML = q.options.map(opt => `<option>${opt}</option>`).join('');
+                    inputHTML = `<select id="${q.id}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">${optionsHTML}</select>`;
+                } else if (q.type === 'textarea') {
+                    inputHTML = `<textarea id="${q.id}" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"></textarea>`;
+                }
+                
+                container.innerHTML += `
+                    <div>
+                        <label for="${q.id}" class="block text-sm font-medium text-gray-700">${q.label}</label>
+                        ${inputHTML}
+                    </div>
+                `;
+            });
+        }
+
+        function goToStep(step) {
+            if (step === 3) {
+                // Save answers before going to summary
+                const planQuestions = questions[projectDetails.plan];
+                planQuestions.forEach(q => {
+                    const input = document.getElementById(q.id);
+                    if (input.value) {
+                        projectDetails[q.label] = input.value;
+                    }
+                });
+                generateSummary();
+            }
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`step-${step}`).classList.add('active');
+            currentStep = step;
+        }
+
+        function generateSummary() {
+            const container = document.getElementById('summary-container');
+            container.innerHTML = `<h3 class="text-lg font-bold mb-4">Resumen de tu Solicitud</h3>`;
+            for (const key in projectDetails) {
+                container.innerHTML += `<p><span class="font-semibold">${key}:</span> ${projectDetails[key]}</p>`;
+            }
+        }
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            
+            let body = `Hola,\n\nEstoy interesado/a en una cotización para un curso interactivo con los siguientes detalles:\n\n`;
+            for (const key in projectDetails) {
+                body += `${key}: ${projectDetails[key]}\n`;
+            }
+            body += `\nInformación de Contacto:\n`;
+            body += `Nombre: ${name}\n`;
+            body += `Correo: ${email}\n\n`;
+            body += `Gracias.`;
+
+            window.location.href = `mailto:caramireg@gmail.com?subject=Solicitud de Cotización para Curso Interactivo&body=${encodeURIComponent(body)}`;
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluciones E-Learning a la Medida</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        .demo-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .demo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-700">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-20">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="images/logo.png" alt="Logo de la Empresa" class="h-10">
+                <span class="text-xl font-bold text-gray-800">EducaTech Pro</span>
+            </a>
+            <div class="space-x-8 hidden md:flex items-center">
+                <a href="#cursos" class="text-gray-600 hover:text-blue-600 font-medium">Portafolio</a>
+                <a href="#servicios" class="text-gray-600 hover:text-blue-600 font-medium">Servicios</a>
+                <a href="#contacto" class="bg-blue-600 text-white font-bold py-2 px-5 rounded-lg hover:bg-blue-700 transition-colors">Contáctanos</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gray-50">
+        <div class="container mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">Transformamos Contenido en Experiencias de Aprendizaje</h1>
+                <p class="text-lg text-gray-600 mb-8">Desarrollamos plataformas de e-learning interactivas y a la medida que garantizan un aprendizaje efectivo y medible.</p>
+                <a href="#servicios" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition-transform transform hover:scale-105 inline-block">Ver Nuestros Planes</a>
+            </div>
+            <div>
+                <img src="images/hero-landing.png" alt="E-learning interactivo" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Cursos Demo Section -->
+    <section id="cursos" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-blue-600 font-semibold">PORTAFOLIO</span>
+                <h2 class="text-3xl font-bold text-gray-900 mt-2">Nuestro Trabajo en Acción</h2>
+                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Explora algunos de los cursos y aplicaciones que hemos desarrollado para diferentes áreas de formación.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <!-- Curso 1: Jóvenes Ingenieros Solares -->
+                <div class="demo-card bg-white rounded-xl shadow-md border overflow-hidden">
+                    <img src="images/demo-solar.png" alt="Jóvenes Ingenieros Solares" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Jóvenes Ingenieros Solares</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Curso para la Tecno Academia enfocado en el diseño y entendimiento de sistemas fotovoltaicos.</p>
+                        <a href="https://caramireg.github.io/Curso_enegia_fv/" target="_blank" class="font-semibold text-blue-600 hover:underline">Explorar demo →</a>
+                    </div>
+                </div>
+
+                <!-- Curso 2: Curso Interactivo de Arduino -->
+                <div class="demo-card bg-white rounded-xl shadow-md border overflow-hidden">
+                    <img src="images/demo-arduino.png" alt="Curso Interactivo de Arduino" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Curso Interactivo de Arduino</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Un viaje interactivo para dominar Arduino, desde bloques visuales hasta programación con código real.</p>
+                        <a href="https://caramireg.github.io/arduinouno/" target="_blank" class="font-semibold text-blue-600 hover:underline">Explorar demo →</a>
+                    </div>
+                </div>
+                
+                <!-- Curso 3: English for Stylists -->
+                <div class="demo-card bg-white rounded-xl shadow-md border overflow-hidden">
+                    <img src="images/demo-stylists.png" alt="English for Stylists" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">English for Stylists</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Curso de inglés técnico para estilistas, con vocabulario y escenarios reales de salón de belleza.</p>
+                        <a href="https://caramireg.github.io/stiylists/" target="_blank" class="font-semibold text-blue-600 hover:underline">Explorar demo →</a>
+                    </div>
+                </div>
+                
+                <!-- Curso 4: Flutter App -->
+                <div class="demo-card bg-white rounded-xl shadow-md border overflow-hidden">
+                    <img src="images/demo-flutter.png" alt="Curso de Flutter" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Aplicación de Restaurante con Flutter</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Una aplicación móvil funcional para un restaurante, desarrollada con Flutter, que permite ver el menú y gestionar pedidos.</p>
+                        <a href="https://caramireg.github.io/curso-flutter-app/" target="_blank" class="font-semibold text-blue-600 hover:underline">Explorar demo →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demos Interactivos Section -->
+    <section id="demos" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-blue-600 font-semibold">CAPACIDADES</span>
+                <h2 class="text-3xl font-bold text-gray-900 mt-2">Demos de Interactividad</h2>
+                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Demostramos nuestra habilidad para crear dinámicas de aprendizaje atractivas que van más allá del contenido tradicional.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="demo-card bg-white rounded-xl shadow-md border overflow-hidden">
+                    <img src="images/demo-sudoku.png" alt="Juego de Sudoku" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Juego de Lógica: Sudoku</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Integramos juegos de lógica para reforzar el pensamiento crítico y la resolución de problemas.</p>
+                        <a href="https://caramireg.github.io/Zoduku/" target="_blank" class="font-semibold text-blue-600 hover:underline">Jugar ahora →</a>
+                    </div>
+                </div>
+                <div class="demo-card bg-white rounded-xl shadow-md border overflow-hidden">
+                    <img src="images/demo-charades.png" alt="Juego de Adivinanzas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Juego Grupal: Adivinanzas</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Creamos dinámicas para fomentar la colaboración y la comunicación en actividades grupales.</p>
+                        <a href="https://caramireg.github.io/Juegoadivina-/" target="_blank" class="font-semibold text-blue-600 hover:underline">Jugar ahora →</a>
+                    </div>
+                </div>
+                <div class="demo-card bg-white rounded-xl shadow-md border overflow-hidden">
+                    <img src="images/demo-truth-or-dare.png" alt="Juego de Verdad o Reto" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Rompehielos: Verdad o Reto</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Desarrollamos herramientas divertidas para romper el hielo y demostrar la versatilidad de nuestras aplicaciones.</p>
+                        <a href="https://caramireg.github.io/Verdadoreto/" target="_blank" class="font-semibold text-blue-600 hover:underline">Jugar ahora →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-center mb-12">
+                <span class="text-blue-600 font-semibold">PLANES</span>
+                <h2 class="text-3xl font-bold text-gray-900 mt-2">Nuestros Servicios</h2>
+                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Ofrecemos paquetes flexibles para adaptarnos a las necesidades y presupuesto de tu institución.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Paquete Básico -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border text-left flex flex-col">
+                    <div class="h-24 w-full mb-6 flex items-center justify-center">
+                        <img src="images/service-basic.png" alt="Adaptación de Contenido" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Adaptación de Contenido</h3>
+                    <p class="text-gray-600 mb-4 text-sm flex-grow">Transformamos tu material pedagógico existente en una experiencia interactiva y medible.</p>
+                    <p class="text-3xl font-bold text-gray-900">$500.000 <span class="text-sm font-medium text-gray-500">COP</span></p>
+                    <a href="cotizador.html" class="mt-6 w-full bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 text-center">Cotizar Ahora</a>
+                </div>
+                <!-- Paquete Estándar -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl border-2 border-blue-600 text-left relative flex flex-col">
+                    <p class="absolute top-0 -translate-y-1/2 bg-blue-600 text-white font-bold text-xs py-1 px-3 rounded-full">Más Popular</p>
+                    <div class="h-24 w-full mb-6 flex items-center justify-center">
+                        <img src="images/service-standard.png" alt="Desarrollo Completo" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Desarrollo Completo</h3>
+                    <p class="text-gray-600 mb-4 text-sm flex-grow">La solución integral. Diseñamos y creamos todo desde cero: contenido, actividades y panel de profesor.</p>
+                    <p class="text-3xl font-bold text-gray-900">$1.000.000 <span class="text-sm font-medium text-gray-500">COP</span></p>
+                    <a href="cotizador.html" class="mt-6 w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 text-center">Cotizar Ahora</a>
+                </div>
+                <!-- Paquete Premium -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border text-left flex flex-col">
+                    <div class="h-24 w-full mb-6 flex items-center justify-center">
+                        <img src="images/service-premium.png" alt="Plataforma Personalizada" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Plataforma Personalizada</h3>
+                    <p class="text-gray-600 mb-4 text-sm flex-grow">Incluye todo lo del paquete estándar, más personalización de marca y funcionalidades avanzadas.</p>
+                    <p class="text-3xl font-bold text-gray-900">$1.500.000 <span class="text-sm font-medium text-gray-500">COP</span></p>
+                    <a href="cotizador.html" class="mt-6 w-full bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 text-center">Cotizar Ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 text-center max-w-2xl">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">¿Listo para transformar tu formación?</h2>
+            <p class="text-gray-600 mb-8">Contáctanos para una demostración gratuita y una cotización a la medida de tus necesidades.</p>
+            <form action="mailto:caramireg@gmail.com" method="post" enctype="text/plain" class="bg-white p-8 rounded-xl shadow-lg border text-left space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Tu Nombre</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Tu Correo</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    </div>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700">Mensaje</label>
+                    <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700">Solicitar Información</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 EducaTech Pro. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+
