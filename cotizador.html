@@ -9,12 +9,16 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .step { display: none; }
-        .step.active { display: block; }
-        .plan-card { transition: all 0.2s ease-in-out; }
-        .plan-card.selected {
+        .step.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .option-card { transition: all 0.2s ease-in-out; }
+        .option-card.selected {
             border-color: #2563eb; /* blue-600 */
+            background-color: #eff6ff; /* blue-50 */
             transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -27,7 +31,7 @@
                 <img src="images/logo.png" alt="Logo de la Empresa" class="h-10">
                 <span class="text-xl font-bold text-gray-800">EducaTech Pro</span>
             </a>
-            <a href="index.html#contacto" class="text-gray-600 hover:text-blue-600 font-medium">Volver a la Página Principal</a>
+            <a href="index.html" class="text-gray-600 hover:text-blue-600 font-medium">Volver a la Página Principal</a>
         </nav>
     </header>
 
@@ -35,35 +39,43 @@
     <main class="container mx-auto px-6 py-12">
         <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
             
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-8">
+                <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-500" style="width: 25%"></div>
+            </div>
+
             <!-- Step 1: Select Plan -->
             <div id="step-1" class="step active">
-                <h2 class="text-2xl font-bold text-center mb-2">Paso 1: Elige tu Plan</h2>
-                <p class="text-center text-gray-600 mb-8">Selecciona el paquete que mejor se adapte a tus necesidades.</p>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="plan-card cursor-pointer bg-white p-6 rounded-xl border-2 text-center" onclick="selectPlan('Adaptación de Contenido')">
-                        <h3 class="text-lg font-bold">Adaptación</h3>
-                        <p class="text-sm text-gray-500">Ya tengo mi contenido.</p>
+                <h2 class="text-2xl font-bold text-center mb-2">Paso 1: ¿Cuál es tu punto de partida?</h2>
+                <p class="text-center text-gray-600 mb-8">Selecciona la opción que mejor describa tu necesidad actual.</p>
+                <div class="space-y-4">
+                    <div class="option-card cursor-pointer bg-white p-6 rounded-xl border-2 flex items-center space-x-4" onclick="selectPlan('Adaptación de Contenido')">
+                        <img src="images/service-basic.png" class="h-12 w-12">
+                        <div>
+                            <h3 class="text-lg font-bold">Ya tengo mi contenido</h3>
+                            <p class="text-sm text-gray-500">Quiero transformar mi material existente (PDF, Word) en un curso interactivo.</p>
+                        </div>
                     </div>
-                    <div class="plan-card cursor-pointer bg-white p-6 rounded-xl border-2 text-center" onclick="selectPlan('Desarrollo Completo')">
-                        <h3 class="text-lg font-bold">Completo</h3>
-                        <p class="text-sm text-gray-500">Necesito todo desde cero.</p>
-                    </div>
-                    <div class="plan-card cursor-pointer bg-white p-6 rounded-xl border-2 text-center" onclick="selectPlan('Plataforma Personalizada')">
-                        <h3 class="text-lg font-bold">Personalizado</h3>
-                        <p class="text-sm text-gray-500">Quiero funciones avanzadas.</p>
+                    <div class="option-card cursor-pointer bg-white p-6 rounded-xl border-2 flex items-center space-x-4" onclick="selectPlan('Desarrollo Completo')">
+                        <img src="images/service-standard.png" class="h-12 w-12">
+                        <div>
+                            <h3 class="text-lg font-bold">Necesito un curso desde cero</h3>
+                            <p class="text-sm text-gray-500">Quiero que diseñen y creen todo el contenido y las actividades por mí.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Step 2: Gather Information -->
             <div id="step-2" class="step">
-                <h2 class="text-2xl font-bold text-center mb-2">Paso 2: Detalles del Proyecto</h2>
-                <p class="text-center text-gray-600 mb-8">Cuéntanos más sobre lo que necesitas.</p>
-                <div id="questions-container" class="space-y-4">
+                <h2 class="text-2xl font-bold text-center mb-2">Paso 2: Define tu Curso</h2>
+                <p class="text-center text-gray-600 mb-8">Cuéntanos más sobre la estructura y las características que necesitas.</p>
+                <div id="questions-container" class="space-y-6">
                     <!-- Questions will be inserted here by JS -->
                 </div>
-                <div class="text-center mt-8">
-                    <button onclick="goToStep(3)" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700">Continuar al Resumen →</button>
+                <div class="flex justify-between mt-8">
+                    <button onclick="goToStep(1)" class="bg-gray-200 text-gray-800 font-bold py-2 px-6 rounded-lg hover:bg-gray-300">Atrás</button>
+                    <button onclick="goToStep(3)" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700">Continuar</button>
                 </div>
             </div>
 
@@ -85,6 +97,9 @@
                     </div>
                     <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700">Enviar Solicitud</button>
                 </form>
+                 <div class="text-center mt-4">
+                    <button onclick="goToStep(2)" class="text-sm text-gray-500 hover:underline">Atrás</button>
+                </div>
             </div>
 
         </div>
@@ -93,40 +108,27 @@
     <script>
         let currentStep = 1;
         const projectDetails = {};
+        const progressBar = document.getElementById('progress-bar');
 
         const questions = {
             'Adaptación de Contenido': [
                 { id: 'modules', label: '¿Cuántos módulos tiene tu curso?', type: 'number' },
-                { id: 'contentReady', label: '¿El contenido (textos, imágenes) ya está creado?', type: 'select', options: ['Sí', 'No'] },
-                { id: 'assessments', label: '¿Cuántas evaluaciones necesitas?', type: 'number' }
+                { id: 'contentFormat', label: '¿En qué formato está tu contenido?', type: 'cards', options: ['PDF', 'Word', 'PowerPoint', 'Otro'] },
+                { id: 'activities', label: '¿Qué tipo de actividades interactivas necesitas?', type: 'checkbox', options: ['Quizzes', 'Arrastrar y Soltar', 'Escritura Guiada', 'Simulaciones'] }
             ],
             'Desarrollo Completo': [
                 { id: 'topic', label: '¿Cuál es el tema principal del curso?', type: 'text' },
                 { id: 'audience', label: '¿A qué público está dirigido?', type: 'text' },
                 { id: 'modules', label: '¿Cuántos módulos necesitas (aproximadamente)?', type: 'number' },
-                { id: 'dashboard', label: '¿Necesitas un dashboard para profesor?', type: 'select', options: ['Sí', 'No'] }
-            ],
-            'Plataforma Personalizada': [
-                { id: 'topic', label: '¿Cuál es el tema principal del curso?', type: 'text' },
-                { id: 'audience', label: '¿A qué público está dirigido?', type: 'text' },
-                { id: 'modules', label: '¿Cuántos módulos necesitas (aproximadamente)?', type: 'number' },
-                { id: 'dashboard', label: '¿Necesitas un dashboard para profesor?', type: 'select', options: ['Sí', 'No'] },
-                { id: 'branding', label: '¿Necesitas un diseño con tu propia marca (logo, colores)?', type: 'select', options: ['Sí', 'No'] },
-                { id: 'specialFeatures', label: '¿Requieres alguna funcionalidad especial? (Opcional)', type: 'textarea' }
+                { id: 'activities', label: '¿Qué tipo de actividades interactivas te gustaría incluir?', type: 'checkbox', options: ['Quizzes', 'Arrastrar y Soltar', 'Escritura Guiada', 'Simulaciones'] },
+                { id: 'dashboard', label: '¿Necesitas un dashboard para profesor?', type: 'cards', options: ['Sí', 'No'] }
             ]
         };
 
         function selectPlan(plan) {
-            projectDetails.plan = plan;
-            const cards = document.querySelectorAll('.plan-card');
-            cards.forEach(card => {
-                card.classList.remove('selected');
-                if (card.textContent.includes(plan.split(' ')[0])) {
-                    card.classList.add('selected');
-                }
-            });
+            projectDetails['Punto de Partida'] = plan;
             generateQuestions(plan);
-            setTimeout(() => goToStep(2), 300);
+            goToStep(2);
         }
 
         function generateQuestions(plan) {
@@ -136,32 +138,44 @@
             
             planQuestions.forEach(q => {
                 let inputHTML = '';
-                if (q.type === 'text' || q.type === 'number') {
-                    inputHTML = `<input type="${q.type}" id="${q.id}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">`;
-                } else if (q.type === 'select') {
-                    const optionsHTML = q.options.map(opt => `<option>${opt}</option>`).join('');
-                    inputHTML = `<select id="${q.id}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">${optionsHTML}</select>`;
-                } else if (q.type === 'textarea') {
-                    inputHTML = `<textarea id="${q.id}" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"></textarea>`;
+                if (q.type === 'text' || q.type === 'number' || q.type === 'textarea') {
+                    inputHTML = `<input type="${q.type === 'textarea' ? 'text' : q.type}" id="${q.id}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">`;
+                } else if (q.type === 'cards') {
+                    inputHTML = '<div class="mt-2 grid grid-cols-2 gap-3">';
+                    q.options.forEach(opt => {
+                        inputHTML += `<button type="button" class="option-card p-4 border-2 rounded-lg" onclick="handleCardSelection(this, '${q.id}', '${opt}')">${opt}</button>`;
+                    });
+                    inputHTML += '</div>';
+                } else if (q.type === 'checkbox') {
+                    inputHTML = '<div class="mt-2 space-y-2">';
+                    q.options.forEach(opt => {
+                        inputHTML += `<label class="flex items-center"><input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" name="${q.id}" value="${opt}"> <span class="ml-2 text-gray-700">${opt}</span></label>`;
+                    });
+                    inputHTML += '</div>';
                 }
                 
-                container.innerHTML += `
-                    <div>
-                        <label for="${q.id}" class="block text-sm font-medium text-gray-700">${q.label}</label>
-                        ${inputHTML}
-                    </div>
-                `;
+                container.innerHTML += `<div><label class="block text-sm font-medium text-gray-700">${q.label}</label>${inputHTML}</div>`;
             });
+        }
+        
+        function handleCardSelection(element, questionId, value) {
+            const parent = element.parentNode;
+            parent.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            projectDetails[document.querySelector(`label[for='${questionId}']`)?.textContent || questionId] = value;
         }
 
         function goToStep(step) {
-            if (step === 3) {
-                // Save answers before going to summary
-                const planQuestions = questions[projectDetails.plan];
+            if (currentStep === 2 && step === 3) {
+                const planQuestions = questions[projectDetails['Punto de Partida']];
                 planQuestions.forEach(q => {
-                    const input = document.getElementById(q.id);
-                    if (input.value) {
-                        projectDetails[q.label] = input.value;
+                    const label = document.querySelector(`label[for='${q.id}']`)?.textContent || q.id;
+                    if (q.type === 'checkbox') {
+                        const checked = Array.from(document.querySelectorAll(`input[name=${q.id}]:checked`)).map(el => el.value);
+                        if (checked.length > 0) projectDetails[label] = checked.join(', ');
+                    } else if (q.type !== 'cards') {
+                        const input = document.getElementById(q.id);
+                        if (input.value) projectDetails[label] = input.value;
                     }
                 });
                 generateSummary();
@@ -169,6 +183,7 @@
             document.getElementById(`step-${currentStep}`).classList.remove('active');
             document.getElementById(`step-${step}`).classList.add('active');
             currentStep = step;
+            progressBar.style.width = `${(currentStep / 3) * 100}%`;
         }
 
         function generateSummary() {

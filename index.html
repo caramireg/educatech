@@ -16,6 +16,68 @@
             transform: translateY(-8px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
+        /* Animación para el texto del Hero */
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Estilos para el comparador Antes/Después */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .comparison-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .comparison-slider .after-image {
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+        }
+        .comparison-slider .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: white;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+         .comparison-slider .slider-handle::after {
+            content: '↔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #2563eb;
+            color: white;
+            border-radius: 9999px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
     </style>
 </head>
 <body class="bg-white text-gray-700">
@@ -29,6 +91,7 @@
             </a>
             <div class="space-x-8 hidden md:flex items-center">
                 <a href="#cursos" class="text-gray-600 hover:text-blue-600 font-medium">Portafolio</a>
+                <a href="#demos" class="text-gray-600 hover:text-blue-600 font-medium">Demos Interactivos</a>
                 <a href="#servicios" class="text-gray-600 hover:text-blue-600 font-medium">Servicios</a>
                 <a href="#contacto" class="bg-blue-600 text-white font-bold py-2 px-5 rounded-lg hover:bg-blue-700 transition-colors">Contáctanos</a>
             </div>
@@ -39,18 +102,34 @@
     <section class="bg-gray-50">
         <div class="container mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
             <div class="text-center md:text-left">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">Transformamos Contenido en Experiencias de Aprendizaje</h1>
-                <p class="text-lg text-gray-600 mb-8">Desarrollamos plataformas de e-learning interactivas y a la medida que garantizan un aprendizaje efectivo y medible.</p>
-                <a href="#servicios" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition-transform transform hover:scale-105 inline-block">Ver Nuestros Planes</a>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight fade-in-up" style="animation-delay: 0.2s;">Transformamos Contenido en Experiencias de Aprendizaje</h1>
+                <p class="text-lg text-gray-600 mb-8 fade-in-up" style="animation-delay: 0.4s;">Desarrollamos plataformas de e-learning interactivas y a la medida que garantizan un aprendizaje efectivo y medible.</p>
+                <a href="#servicios" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition-transform transform hover:scale-105 inline-block fade-in-up" style="animation-delay: 0.6s;">Ver Nuestros Planes</a>
             </div>
             <div>
-                <img src="images/hero-landing.png" alt="E-learning interactivo" class="rounded-lg shadow-xl">
+                <img src="images/hero-landing.png" alt="E-learning interactivo" class="rounded-lg shadow-xl fade-in-up" style="animation-delay: 0.8s;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparador "Antes y Después" -->
+    <section id="comparador" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-blue-600 font-semibold">NUESTRA PROPUESTA DE VALOR</span>
+                <h2 class="text-3xl font-bold text-gray-900 mt-2">De Estático a Interactivo</h2>
+                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Desliza para ver cómo transformamos material tradicional en una experiencia de aprendizaje moderna y atractiva.</p>
+            </div>
+            <div class="comparison-slider max-w-4xl mx-auto">
+                <img src="images/before-slider.png" alt="Contenido antes de la transformación" class="before-image">
+                <img src="images/after-slider.png" alt="Contenido después de la transformación" class="after-image">
+                <div class="slider-handle"></div>
             </div>
         </div>
     </section>
 
     <!-- Cursos Demo Section -->
-    <section id="cursos" class="py-20">
+    <section id="cursos" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <span class="text-blue-600 font-semibold">PORTAFOLIO</span>
@@ -103,7 +182,7 @@
     </section>
 
     <!-- Demos Interactivos Section -->
-    <section id="demos" class="py-20 bg-gray-50">
+    <section id="demos" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <span class="text-blue-600 font-semibold">CAPACIDADES</span>
@@ -140,7 +219,7 @@
     </section>
 
     <!-- Servicios Section -->
-    <section id="servicios" class="py-20">
+    <section id="servicios" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6 text-center">
             <div class="text-center mb-12">
                 <span class="text-blue-600 font-semibold">PLANES</span>
@@ -149,7 +228,7 @@
             </div>
             <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <!-- Paquete Básico -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border text-left flex flex-col">
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg border text-left flex flex-col">
                     <div class="h-24 w-full mb-6 flex items-center justify-center">
                         <img src="images/service-basic.png" alt="Adaptación de Contenido" class="max-h-full max-w-full object-contain">
                     </div>
@@ -159,7 +238,7 @@
                     <a href="cotizador.html" class="mt-6 w-full bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 text-center">Cotizar Ahora</a>
                 </div>
                 <!-- Paquete Estándar -->
-                <div class="bg-white p-8 rounded-xl shadow-2xl border-2 border-blue-600 text-left relative flex flex-col">
+                <div class="service-card bg-white p-8 rounded-xl shadow-2xl border-2 border-blue-600 text-left relative flex flex-col">
                     <p class="absolute top-0 -translate-y-1/2 bg-blue-600 text-white font-bold text-xs py-1 px-3 rounded-full">Más Popular</p>
                     <div class="h-24 w-full mb-6 flex items-center justify-center">
                         <img src="images/service-standard.png" alt="Desarrollo Completo" class="max-h-full max-w-full object-contain">
@@ -170,7 +249,7 @@
                     <a href="cotizador.html" class="mt-6 w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 text-center">Cotizar Ahora</a>
                 </div>
                 <!-- Paquete Premium -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border text-left flex flex-col">
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg border text-left flex flex-col">
                     <div class="h-24 w-full mb-6 flex items-center justify-center">
                         <img src="images/service-premium.png" alt="Plataforma Personalizada" class="max-h-full max-w-full object-contain">
                     </div>
@@ -215,8 +294,27 @@
         </div>
     </footer>
 
+    <script>
+        const slider = document.querySelector('.comparison-slider');
+        const handle = document.querySelector('.slider-handle');
+        const afterImage = document.querySelector('.after-image');
+
+        let isDragging = false;
+
+        handle.addEventListener('mousedown', () => { isDragging = true; });
+        document.addEventListener('mouseup', () => { isDragging = false; });
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            const rect = slider.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            if (x < 0) x = 0;
+            if (x > rect.width) x = rect.width;
+
+            const percentage = (x / rect.width) * 100;
+            handle.style.left = `${percentage}%`;
+            afterImage.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
+        });
+    </script>
 </body>
 </html>
-
-
-
